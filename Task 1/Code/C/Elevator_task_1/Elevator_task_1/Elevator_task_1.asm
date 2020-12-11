@@ -1,0 +1,75 @@
+/*
+ * Elevator_task_1.asm
+ *
+ *  Created: 12/8/2020 11:25:29 PM
+ *   Author: nhjoy
+ */ 
+
+ .include "M32DEF.INC"
+ 	.ORG 0
+
+		;initializing SP
+		LDI	R16, HIGH (RAMEND)	; Load SPH
+		OUT	SPH, R16
+		LDI	R16, LOW (RAMEND)	; Load SPL
+		OUT SPL, R16
+
+		CBI DDRB, 0
+		LDI R16, 0xFF
+		OUT	DDRC, R16
+
+		LDI	R16, 0x01
+		OUT PORTC, R16
+
+SW1:	SBIC	PINB,	0; Skip if PB0 is clear
+		RJMP	SW2
+		LDI		R16, 0b00000001
+		OUT		PORTC, R16
+		RJMP	SW1
+
+SW2:
+		SBIC	PINB,	1
+		RJMP	SW3
+		LDI		R16, 0b00000010
+		OUT		PORTC, R16
+		RJMP	SW1
+
+SW3:
+		SBIC	PINB,	2
+		RJMP	SW4
+		LDI		R16, 0b00000011
+		OUT		PORTC, R16
+		RJMP	SW1
+
+SW4:
+		SBIC	PINB,	3
+		RJMP	SW5
+		LDI		R16, 0b00000100
+		OUT		PORTC, R16
+		RJMP	SW1
+SW5:
+		SBIC	PINB,	4
+		RJMP	SW1
+		LDI		R16, 0b00000101
+		OUT		PORTC, R16
+		RJMP	SW1
+
+
+; DELAY SUBROUTINE
+DELAY_500ms:
+
+		LDI		R30, 32
+L1:		LDI		R29, 100
+L2:		LDI		R28, 250
+L3:
+		NOP
+		NOP
+		DEC		R28
+		BRNE	L3
+
+		DEC		R29
+		BRNE	L2
+
+		DEC		R30
+		BRNE	L1
+		RET
