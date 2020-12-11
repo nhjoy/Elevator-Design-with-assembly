@@ -1,5 +1,5 @@
 
-AVRASM ver. 2.1.57  C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm Fri Dec 11 00:46:51 2020
+AVRASM ver. 2.1.57  C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm Fri Dec 11 18:16:51 2020
 
 [builtin](2): Including file 'D:\Program Files (x86)\Atmel\Atmel Toolchain\AVR Assembler\Native\2.1.1175\avrassembler\Include\m32def.inc'
 C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm(8): Including file 'D:\Program Files (x86)\Atmel\Atmel Toolchain\AVR Assembler\Native\2.1.1175\avrassembler\Include\M32DEF.INC'
@@ -873,70 +873,125 @@ C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elev
                   	.ORG 0
                  
                  		;initializing SP
-000000 e008      		LDI	R16, HIGH (RAMEND)	; Load SPH
-000001 bf0e      		OUT	SPH, R16
-000002 e50f      		LDI	R16, LOW (RAMEND)	; Load SPL
-000003 bf0d      		OUT SPL, R16
+000000 e008      		LDI		R16, HIGH (RAMEND)	; Load SPH
+000001 bf0e      		OUT		SPH, R16
+000002 e50f      		LDI		R16, LOW (RAMEND)	; Load SPL
+000003 bf0d      		OUT		SPL, R16
                  
-000004 98b8      		CBI DDRB, 0
-000005 ef0f      		LDI R16, 0xFF
-000006 bb04      		OUT	DDRC, R16
+000004 98b8      		CBI		DDRB, 0
+000005 ef0f      		LDI		R16, 0xFF
+000006 bb04      		OUT		DDRC, R16
                  
-000007 e001      		LDI	R16, 0x01
-000008 bb05      		OUT PORTC, R16
+000007 e001      		LDI		R16, 0x01
+000008 bb05      		OUT		PORTC, R16
                  
-000009 99b0      SW1:	SBIC	PINB,	0; Skip if PB0 is clear
-00000a c003      		RJMP	SW2
-00000b e001      		LDI		R16, 0b00000001
-00000c bb05      		OUT		PORTC, R16
-00000d cffb      		RJMP	SW1
+                 MAIN:
+000009 e011      		LDI		R17,	0x01
+                 
+                 
+00000a 9bb0      SW1:	SBIS	PINB,	0; Skip if PB0 is clear
+00000b c004      		RJMP	SW2
+00000c e001      		LDI		R16, 0b00000001
+00000d 940e 0028 		CALL	COMPARE
+00000f cffa      		RJMP	SW1
                  
                  SW2:
-00000e 99b1      		SBIC	PINB,	1
-00000f c003      		RJMP	SW3
-000010 e002      		LDI		R16, 0b00000010
-000011 bb05      		OUT		PORTC, R16
-000012 cff6      		RJMP	SW1
+000010 9bb1      		SBIS	PINB,	1
+000011 c004      		RJMP	SW3
+000012 e002      		LDI		R16, 0b00000010
+000013 940e 0028 		CALL	COMPARE
+000015 cff4      		RJMP	SW1
                  
                  SW3:
-000013 99b2      		SBIC	PINB,	2
-000014 c003      		RJMP	SW4
-000015 e003      		LDI		R16, 0b00000011
-000016 bb05      		OUT		PORTC, R16
-000017 cff1      		RJMP	SW1
+000016 9bb2      		SBIS	PINB,	2
+000017 c004      		RJMP	SW4
+000018 e003      		LDI		R16, 0b00000011
+000019 940e 0028 		CALL	COMPARE
+00001b cfee      		RJMP	SW1
                  
                  SW4:
-000018 99b3      		SBIC	PINB,	3
-000019 c003      		RJMP	SW5
-00001a e004      		LDI		R16, 0b00000100
-00001b bb05      		OUT		PORTC, R16
-00001c cfec      		RJMP	SW1
+00001c 9bb3      		SBIS	PINB,	3
+00001d c004      		RJMP	SW5
+00001e e004      		LDI		R16, 0b00000100
+00001f 940e 0028 		CALL	COMPARE
+000021 cfe8      		RJMP	SW1
                  SW5:
-00001d 99b4      		SBIC	PINB,	4
-00001e cfea      		RJMP	SW1
-00001f e005      		LDI		R16, 0b00000101
-000020 bb05      		OUT		PORTC, R16
-000021 cfe7      		RJMP	SW1
+000022 9bb4      		SBIS	PINB,	4
+000023 cfe6      		RJMP	SW1
+000024 e005      `		LDI		R16, 0b00000101
+000025 940e 0028 		CALL	COMPARE
+000027 cfe2      		RJMP	SW1
                  
+                 COMPARE:
                  
-                 ; DELAY SUBROUTINE
+000028 1701       CP		R16, R17
+000029 f418       BRSH SAME_HI
+                 
+00002a 2f41       MOV	R20, R17 ; LESS
+00002b 940e 003b  CALL LESS
+                 
+                 SAME_HI:
+00002d f419       BRNE HI
+                 
+00002e 2f10       MOV R17, R16; EQUAL
+00002f bb15       OUT	PORTC, R17
+000030 9508       RET
+                 
+                 HI:
+000031 2f40      	MOV R20, R16 ; MORE
+000032 1b41      	SUB	R20, R17
+                 L2:
+000033 9513      	INC	R17
+000034 940e 004c 	CALL DELAY_500ms
+000036 bb15      	OUT	PORTC, R17
+000037 954a      	DEC R20
+000038 f7d1      	BRNE L2
+000039 2f10      	MOV R17, R16
+00003a 9508      	RET
+                 ; HIGH
+                 
+                 LESS:
+00003b 2f54      	MOV R21, R20
+00003c e060      	LDI R22, 0x00
+                 	L1:
+00003d 954a      		DEC	R20	
+00003e c001      		RJMP CHECK1
+00003f f7e9      		BRNE L1
+                 CHECK1:
+000040 1746      		CP	R20,R22
+000041 f400      		BRSH CHECKING1
+                 CHECKING1:
+000042 f419      		BRNE HI1
+                 
+000043 bb55      		OUT	PORTC, R21
+000044 2f10      		MOV R17, R16
+000045 9508      		RET
+                 
+                 HI1:
+000046 955a      	DEC R21
+000047 940e 004c 	CALL DELAY_500ms
+000049 bb55      	OUT	PORTC, R21
+00004a cff2      	RJMP L1
+00004b 0000      NOP
+                 
+                 ;DELAY SUBROUTINE
                  DELAY_500ms:
                  
-000022 e2e0      		LDI		R30, 32
-000023 e6d4      L1:		LDI		R29, 100
-000024 efca      L2:		LDI		R28, 250
-                 L3:
-000025 0000      		NOP
-000026 0000      		NOP
-000027 95ca      		DEC		R28
-000028 f7e1      		BRNE	L3
+00004c e2e0      		LDI		R30, 32
+00004d e3d2      L5:		LDI		R29, 50
+00004e e9c6      L6:		LDI		R28, 150
+                 L7:
+00004f 0000      		NOP
+000050 0000      		NOP
+000051 95ca      		DEC		R28
+000052 f7e1      		BRNE	L7
                  
-000029 95da      		DEC		R29
-00002a f7c9      		BRNE	L2
+000053 95da      		DEC		R29
+000054 f7c9      		BRNE	L6
                  
-00002b 95ea      		DEC		R30
-00002c f7b1      		BRNE	L1
-00002d 9508      		RET
+000055 95ea      		DEC		R30
+000056 f7b1      		BRNE	L5
+000057 9508      		RET
 
 
 RESOURCE USE INFORMATION
@@ -956,37 +1011,37 @@ counted separately from r26..r31 here.
 "ATmega32" register use summary:
 r0 :   0 r1 :   0 r2 :   0 r3 :   0 r4 :   0 r5 :   0 r6 :   0 r7 :   0 
 r8 :   0 r9 :   0 r10:   0 r11:   0 r12:   0 r13:   0 r14:   0 r15:   0 
-r16:  18 r17:   0 r18:   0 r19:   0 r20:   0 r21:   0 r22:   0 r23:   0 
+r16:  18 r17:  10 r18:   0 r19:   0 r20:   7 r21:   4 r22:   2 r23:   0 
 r24:   0 r25:   0 r26:   0 r27:   0 r28:   2 r29:   2 r30:   2 r31:   0 
 x  :   0 y  :   0 z  :   0 
-Registers used: 4 out of 35 (11.4%)
+Registers used: 8 out of 35 (22.9%)
 
 "ATmega32" instruction use summary:
 .lds  :   0 .sts  :   0 adc   :   0 add   :   0 adiw  :   0 and   :   0 
 andi  :   0 asr   :   0 bclr  :   0 bld   :   0 brbc  :   0 brbs  :   0 
 brcc  :   0 brcs  :   0 break :   0 breq  :   0 brge  :   0 brhc  :   0 
 brhs  :   0 brid  :   0 brie  :   0 brlo  :   0 brlt  :   0 brmi  :   0 
-brne  :   3 brpl  :   0 brsh  :   0 brtc  :   0 brts  :   0 brvc  :   0 
-brvs  :   0 bset  :   0 bst   :   0 call  :   0 cbi   :   1 cbr   :   0 
+brne  :   7 brpl  :   0 brsh  :   2 brtc  :   0 brts  :   0 brvc  :   0 
+brvs  :   0 bset  :   0 bst   :   0 call  :   8 cbi   :   1 cbr   :   0 
 clc   :   0 clh   :   0 cli   :   0 cln   :   0 clr   :   0 cls   :   0 
-clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   0 cpc   :   0 
-cpi   :   0 cpse  :   0 dec   :   3 eor   :   0 fmul  :   0 fmuls :   0 
-fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   0 jmp   :   0 
-ld    :   0 ldd   :   0 ldi   :  12 lds   :   0 lpm   :   0 lsl   :   0 
-lsr   :   0 mov   :   0 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
-neg   :   0 nop   :   2 or    :   0 ori   :   0 out   :   9 pop   :   0 
-push  :   0 rcall :   0 ret   :   1 reti  :   0 rjmp  :  10 rol   :   0 
-ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   5 sbis  :   0 
+clt   :   0 clv   :   0 clz   :   0 com   :   0 cp    :   2 cpc   :   0 
+cpi   :   0 cpse  :   0 dec   :   6 eor   :   0 fmul  :   0 fmuls :   0 
+fmulsu:   0 icall :   0 ijmp  :   0 in    :   0 inc   :   1 jmp   :   0 
+ld    :   0 ldd   :   0 ldi   :  14 lds   :   0 lpm   :   0 lsl   :   0 
+lsr   :   0 mov   :   6 movw  :   0 mul   :   0 muls  :   0 mulsu :   0 
+neg   :   0 nop   :   3 or    :   0 ori   :   0 out   :   8 pop   :   0 
+push  :   0 rcall :   0 ret   :   4 reti  :   0 rjmp  :  12 rol   :   0 
+ror   :   0 sbc   :   0 sbci  :   0 sbi   :   0 sbic  :   0 sbis  :   5 
 sbiw  :   0 sbr   :   0 sbrc  :   0 sbrs  :   0 sec   :   0 seh   :   0 
 sei   :   0 sen   :   0 ser   :   0 ses   :   0 set   :   0 sev   :   0 
 sez   :   0 sleep :   0 spm   :   0 st    :   0 std   :   0 sts   :   0 
-sub   :   0 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
-Instructions used: 9 out of 113 (8.0%)
+sub   :   1 subi  :   0 swap  :   0 tst   :   0 wdr   :   0 
+Instructions used: 15 out of 113 (13.3%)
 
 "ATmega32" memory use summary [bytes]:
 Segment   Begin    End      Code   Data   Used    Size   Use%
 ---------------------------------------------------------------
-[.cseg] 0x000000 0x00005c     92      0     92   32768   0.3%
+[.cseg] 0x000000 0x0000b0    176      0    176   32768   0.5%
 [.dseg] 0x000060 0x000060      0      0      0    2048   0.0%
 [.eseg] 0x000000 0x000000      0      0      0    1024   0.0%
 
