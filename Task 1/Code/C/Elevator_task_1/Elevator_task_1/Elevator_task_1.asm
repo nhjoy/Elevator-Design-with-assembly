@@ -8,7 +8,7 @@
  .include "M32DEF.INC"
  	.ORG 0
 
-		;initializing SP
+;initialize
 		LDI		R16, HIGH (RAMEND)	; Load SPH
 		OUT		SPH, R16
 		LDI		R16, LOW (RAMEND)	; Load SPL
@@ -16,7 +16,7 @@
 
 		CBI		DDRB, 0
 		LDI		R16, 0xFF
-		OUT		DDRC, R16
+		OUT		DDRC, R16 ; set PORTC as OUTPUT
 
 		LDI		R16, 0x01
 		OUT		PORTC, R16
@@ -24,40 +24,40 @@
 MAIN:
 		LDI		R17,	0x01
 
-
-SW1:	SBIS	PINB,	0; Skip if PB0 is clear
+SW1:	SBIS	PINB,	0; skip next if PB bit is HIGH
 		RJMP	SW2
 		LDI		R16, 0b00000001
 		CALL	COMPARE
 		RJMP	SW1
 
 SW2:
-		SBIS	PINB,	1
+		SBIS	PINB,	1 ; skip next if PB bit is HIGH
 		RJMP	SW3
 		LDI		R16, 0b00000010
 		CALL	COMPARE
 		RJMP	SW1
 
 SW3:
-		SBIS	PINB,	2
+		SBIS	PINB,	2 ; skip next if PB bit is HIGH
 		RJMP	SW4
 		LDI		R16, 0b00000011
 		CALL	COMPARE
 		RJMP	SW1
 
 SW4:
-		SBIS	PINB,	3
+		SBIS	PINB,	3 ; skip next if PB bit is HIGH
 		RJMP	SW5
 		LDI		R16, 0b00000100
 		CALL	COMPARE
 		RJMP	SW1
 SW5:
-		SBIS	PINB,	4
+		SBIS	PINB,	4 ; skip next if PB bit is HIGH
 		RJMP	SW1
 `		LDI		R16, 0b00000101
 		CALL	COMPARE
 		RJMP	SW1
 
+;Compare subroutine
 COMPARE:
 
  CP		R16, R17
@@ -83,6 +83,7 @@ L2:
 	DEC R20
 	BRNE L2
 	MOV R17, R16
+
 	RET
 ; HIGH
 
@@ -108,7 +109,6 @@ HI1:
 	CALL DELAY_500ms
 	OUT	PORTC, R21
 	RJMP L1
-NOP
 
 ;DELAY SUBROUTINE
 DELAY_500ms:

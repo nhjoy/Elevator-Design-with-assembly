@@ -23,21 +23,21 @@
  </OUTPUT_FILES>
  <LABELS>
   <MAIN><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>24</LINE></MAIN>
-  <SW1><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>28</LINE></SW1>
-  <SW2><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>34</LINE></SW2>
+  <SW1><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>27</LINE></SW1>
+  <SW2><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>33</LINE></SW2>
   <COMPARE><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>61</LINE></COMPARE>
-  <SW3><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>41</LINE></SW3>
-  <SW4><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>48</LINE></SW4>
-  <SW5><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>54</LINE></SW5>
+  <SW3><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>40</LINE></SW3>
+  <SW4><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>47</LINE></SW4>
+  <SW5><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>53</LINE></SW5>
   <SAME_HI><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>69</LINE></SAME_HI>
-  <LESS><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>89</LINE></LESS>
+  <LESS><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>90</LINE></LESS>
   <HI><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>76</LINE></HI>
   <L2><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>79</LINE></L2>
   <DELAY_500ms><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>114</LINE></DELAY_500ms>
-  <L1><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>92</LINE></L1>
-  <CHECK1><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>96</LINE></CHECK1>
-  <CHECKING1><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>99</LINE></CHECKING1>
-  <HI1><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>106</LINE></HI1>
+  <L1><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>93</LINE></L1>
+  <CHECK1><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>97</LINE></CHECK1>
+  <CHECKING1><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>100</LINE></CHECKING1>
+  <HI1><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>107</LINE></HI1>
   <L5><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>117</LINE></L5>
   <L6><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>118</LINE></L6>
   <L7><FILE>C:\Users\nhjoy\Documents\GitHub\Elevator-Design-with-assembly\Task 1\Code\C\Elevator_task_1\Elevator_task_1\Elevator_task_1.asm</FILE><LINE>119</LINE></L7>
